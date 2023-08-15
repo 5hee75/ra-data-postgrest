@@ -181,7 +181,7 @@ export default (config: IDataProviderConfig): DataProvider => ({
                 }),
             })
             .then(({ json }) => ({
-                data: dataWithId(json, primaryKey),
+                data: Array.isArray(json) ? dataWithId(json[0] || {}, primaryKey) : dataWithId(json, primaryKey),
             }));
     },
 
